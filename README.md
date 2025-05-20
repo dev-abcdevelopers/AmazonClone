@@ -105,32 +105,32 @@ Features full REST APIs, admin views (EJS), and Prisma ORM with SQLite (easy to 
 
 ## 🧩 Folder Structure
 
+```text
 prime-video-backend/
 ├── src/
-│ ├── config/
-│ ├── controllers/
-│ │ ├── api/
-│ │ └── admin/
-│ ├── middlewares/
-│ ├── routes/
-│ │ ├── api/
-│ │ └── admin/
-│ ├── services/
-│ ├── types/
-│ ├── utils/
-│ └── views/
-│ ├── category/
-│ └── video/
+│   ├── config/
+│   ├── controllers/
+│   │   ├── api/
+│   │   └── admin/
+│   ├── middlewares/
+│   ├── routes/
+│   │   ├── api/
+│   │   └── admin/
+│   ├── services/
+│   ├── types/
+│   ├── utils/
+│   └── views/
+│       ├── category/
+│       └── video/
 ├── prisma/
-│ ├── schema.prisma
-│ └── migrations/
-├── public/ # for built CSS, images, etc (optional)
+│   ├── schema.prisma
+│   └── migrations/
+├── public/          # for built CSS, images, etc (optional)
 ├── .env
 ├── .env.example
 ├── package.json
 ├── tsconfig.json
 └── README.md
-
 
 ---
 
