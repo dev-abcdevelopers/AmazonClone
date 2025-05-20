@@ -132,6 +132,7 @@ prime-video-backend/
 ├── tsconfig.json
 └── README.md
 
+```
 ---
 
 ## 🙋 FAQ
