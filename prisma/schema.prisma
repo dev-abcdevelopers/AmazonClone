@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  mobile    String   @unique
+  username  String   @unique
+  firstName String
+  lastName  String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  videos    Video[]  @relation("UploadedVideos")
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  image     String
+  videos    VideoOnCategory[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Video {
+  id        String   @id @default(uuid())
+  title     String
+  description String
+  url       String
+  thumbnail String
+  uploader  User     @relation("UploadedVideos", fields: [uploaderId], references: [id])
+  uploaderId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  categories VideoOnCategory[]
+}
+
+model VideoOnCategory {
+  id         String   @id @default(uuid())
+  video      Video    @relation(fields: [videoId], references: [id])
+  videoId    String
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+  order      Int?
+
+  @@unique([videoId, categoryId])
+}

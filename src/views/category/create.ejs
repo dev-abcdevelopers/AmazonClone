@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Category</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      display: block;
+      margin: 30px auto;
+    }
+    .checkmark__circle {
+      stroke-dasharray: 166;
+      stroke-dashoffset: 166;
+      stroke-width: 2;
+      stroke-miterlimit: 10;
+      stroke: #22c55e;
+      fill: none;
+      animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+    .checkmark__check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: stroke 0.3s 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+      stroke: #22c55e;
+    }
+    @keyframes stroke {
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8" id="mainBox">
+    <h1 class="text-2xl font-bold mb-6 text-center">Add Category</h1>
+    <% if (error) { %>
+      <div class="mb-4 p-2 bg-red-100 text-red-700 rounded"><%= error %></div>
+    <% } %>
+
+    <div id="successBox" style="<%= success ? '' : 'display:none;' %>">
+      <div class="flex flex-col items-center">
+        <svg class="checkmark" viewBox="0 0 52 52">
+          <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+          <path class="checkmark__check" fill="none" d="M14 27l7 7 16-16"/>
+        </svg>
+        <div class="text-green-600 text-xl font-semibold mt-2 animate-bounce">Category Added!</div>
+      </div>
+    </div>
+
+    <form id="categoryForm" method="POST" class="space-y-4" style="<%= success ? 'display:none;' : '' %>">
+      <div>
+        <input name="name" placeholder="Category Name" required
+          class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <div>
+        <input name="image" placeholder="Image URL" required
+          class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+      <button type="submit"
+        class="w-full bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700 transition">
+        Add Category
+      </button>
+    </form>
+  </div>
+  <% if (success) { %>
+    <script>
+      // After 2.5 seconds, hide success and show form
+      setTimeout(function() {
+        document.getElementById('successBox').style.display = 'none';
+        document.getElementById('categoryForm').style.display = '';
+      }, 2500);
+    </script>
+  <% } %>
+</body>
+</html>

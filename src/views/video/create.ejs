@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><title>Add Video</title></head>
+<body>
+  <h1>Add Video</h1>
+  <% if (error) { %><div style="color:red"><%= error %></div><% } %>
+  <form method="POST">
+    <input name="title" placeholder="Title" required />
+    <input name="description" placeholder="Description" />
+    <input name="url" placeholder="Video URL" required />
+    <input name="thumbnail" placeholder="Thumbnail URL" />
+    <input name="uploaderId" placeholder="Uploader ID" required />
+    <div>
+      <label>Categories:</label>
+      <% categories.forEach(function(cat) { %>
+        <input type="checkbox" name="categoryIds" value="<%= cat.id %>"/><%= cat.name %>
+      <% }); %>
+    </div>
+    <button type="submit">Add Video</button>
+  </form>
+</body>
+</html>
